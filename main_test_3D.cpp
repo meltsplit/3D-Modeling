@@ -20,15 +20,15 @@ private:
 	float cam_dist = 1.0f;
 	float cam_phi = 0.0f;
 	float cam_theta = 0.0f;
-	Color color = Color::black;                           //Color!!!!!!
 
-	void renderScene(Color color);
+	Color color = Color::black;                           //Color 멤버 변수
 
-	//
+	void renderScene(Color color);                        // renderScene함수에 Color 인자 추가
+
+	
 	Button load_cube_button;
 	Button load_bunny_button;
 	Button load_teapot_button;
-//	Button load_armadillo_button;
 	Button zoom_in_button;
 	Button zoom_out_button;
 	Button move_left_button;
@@ -38,13 +38,13 @@ private:
 	Button cull_button;
 	Button exit_button;
 
-	Button red_button;                     //Color Button
+	Button red_button;                       //Color Button
 	Button green_button;
 	Button blue_button;
 	Button white_button;
 	Button black_button;                   
 
-	Button reset_button;				   //Reset Button
+	Button reset_button;				     //Reset Button
 
 	Button move_Left30_button;               //Move 30 degree Button
 	Button move_Right30_button;              
@@ -70,9 +70,9 @@ private:
 	void makeWhite();
 	void makeBlack();   
 
-	void reset();                             // reset Method
+	void reset();                              // reset Method
 
-	void moveLeft30();                        // 30 degree Method
+	void moveLeft30();                         // 30 degree Method
 	void moveRight30();
 	void moveUp30();
 	void moveDown30();
@@ -120,13 +120,13 @@ ModelViewer::ModelViewer(Point xy, int w, int h, const string& title)
 	cull_button(Point(w-160, 10), 70, 20, "Cull", cb_cull),
 	exit_button(Point(w-80,10), 70, 20, "Exit", cb_exit),
 
-	red_button(Point(240, 260), 60, 60, "Red", cb_red),                        // Color Layout
+	red_button(Point(240, 260), 60, 60, "Red", cb_red),                         // Color Layout
 	green_button(Point(240, 340), 60, 60, "Green", cb_green),
 	blue_button(Point(240, 420), 60, 60, "Blue", cb_blue),
 	white_button(Point(240, 500), 60, 60, "White", cb_white),
 	black_button(Point(240, 580), 60, 60, "Black", cb_black),
 	
-	reset_button(Point(600, 750), 60, 60, "Reset", cb_reset),				  //Reset Layout
+	reset_button(Point(600, 750), 60, 60, "Reset", cb_reset),				    //Reset Layout
 
 	move_Left30_button(Point(1000, 340), 60, 60, "Left30", cb_moveLeft30),      // 30 degree Layout
 	move_Right30_button(Point(1000, 420), 60, 60, "Right30", cb_moveRight30),
@@ -139,7 +139,6 @@ ModelViewer::ModelViewer(Point xy, int w, int h, const string& title)
 	attach(load_cube_button);
 	attach(load_bunny_button);
 	attach(load_teapot_button);
-//	attach(load_armadillo_button);
 	attach(zoom_in_button);
 	attach(zoom_out_button);
 	attach(move_left_button);
@@ -285,8 +284,8 @@ void ModelViewer::exit()
 {
 	hide();
 }
-                                    //Color Definition
-void ModelViewer::makeRed()
+                                    
+void ModelViewer::makeRed()                 //Color Definition
 {
 	color = Color::red;
 	renderScene(color);
@@ -317,7 +316,7 @@ void ModelViewer::makeBlack()
 
 
 
-void ModelViewer::reset()                //   Reset Definition
+void ModelViewer::reset()                   //   Reset Definition
 {
 	cam_dist = 3.0f;
 	cam_phi = 0.0f;

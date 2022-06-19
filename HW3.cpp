@@ -32,7 +32,6 @@ VertexBuffer& VertexBuffer:: operator=(const VertexBuffer& vb) {
 		sz = vb.sz;
 		return *this;
 	}
-
 	Vertex* v = new Vertex[vb.sz];
 	for (int i = 0; i < vb.sz; i++) v[i] = vb.buffer[i];
 	delete[] buffer;
@@ -70,8 +69,6 @@ void VertexBuffer::reserve(int new_capacity) {
 
 void VertexBuffer::clear() {
 	sz = 0;
-	space = 0;
-	buffer = nullptr;
 }
 void VertexBuffer::addVertex(float x, float y, float z) {
 	if (sz == 0)
@@ -149,8 +146,6 @@ void FaceBuffer::reserve(int new_capacity) {
 
 void FaceBuffer::clear() {
 	sz = 0;
-	space = 0;
-	buffer = nullptr;
 }
 
 void FaceBuffer::addFace(int i, int j, int k) {
@@ -262,6 +257,11 @@ Matrix4x4::Matrix4x4(float m[16])
 	{
 		rows[r] = Vector4(m[r * 4 + 0], m[r * 4 + 1], m[r * 4 + 2], m[r * 4 + 3]);
 	}
+}
+
+//column 함수 구현
+Vector4 Matrix4x4::column(int n) const {
+	return Vector4(rows[0][n], rows[1][n], rows[2][n], rows[3][n]);
 }
 
 // Implementation of Vector3 operations
@@ -400,21 +400,10 @@ Matrix4x4 operator*(const Matrix4x4& m1, const Matrix4x4& m2)
 {
 	Matrix4x4 matrix;
 
-	Vector4 column[4];
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++)
-		{
-			column[i][j] = m2[j][i];
-		}
-	}
-
-	for (int i = 0; i < 4; i++) {
-		for (int j = 0; j < 4; j++) {
-			matrix[i][j] = m1[i] % column[j];
-		}	
-	}
-			
+	for (int i = 0; i < 4; i++) 
+		for (int j = 0; j < 4; j++) 
+			matrix[i][j] = m1[i] % m2.column(j);
+	
 	return matrix;
 }
 

@@ -157,6 +157,7 @@ public:
 				float _30, float _31, float _32, float _33);
 	Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3);
 	Matrix4x4(float m[16]);
+	Vector4 column(int n) const;
 
 	Vector4& operator[](int m) { return rows[m]; }
 	const Vector4& operator[](int m) const { return rows[m]; }

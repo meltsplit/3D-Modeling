@@ -243,15 +243,14 @@ Graph_lib::Lines* Mesh::render(Graph_lib::Window* wnd, const Matrix4x4& mat_came
 
 	Graph_lib::Lines* lines = new Graph_lib::Lines();
 	
-	//color값에 따라 색상이 변경됨
-	lines->set_color(color);
+	
+	lines->set_color(color); //color값에 따라 색상이 변경됨
 
-	//lines->set_style(Graph_lib::Line_style::Line_style(Graph_lib::Line_style::solid, 10)); 선두께도 조절할수 있습니다.
 
 	for (int i = 0; i < face_buffer.size(); i++)
 	{
 		Face& face = face_buffer[i];
-
+		//lines->set_style(Graph_lib::Line_style::Line_style(Graph_lib::Line_style::solid, 10)); 선두께도 조절할수 있습니다.
 		Vertex& v_i = vertex_buffer[face.i];
 		Vertex& v_j = vertex_buffer[face.j];
 		Vertex& v_k = vertex_buffer[face.k];
